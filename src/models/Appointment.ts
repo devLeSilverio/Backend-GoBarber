@@ -7,13 +7,20 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import User from './users';
+
 @Entity('appointments')
 class Appointment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  // quantos usuarios o appointmente tem?1
+  // quantos servicos  o usuario pode prestar?muitos
+
   @Column()
-  provider: string;
+  provider_id: string;
+
+  provider: User;
 
   @Column('timestamp with time zone')
   date: Date;
