@@ -7,7 +7,7 @@ import {
   CreateDateColumn,
 } from 'typeorm';
 
-@Entity('users ')
+@Entity('users')
 class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
