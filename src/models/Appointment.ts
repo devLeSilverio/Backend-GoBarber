@@ -5,6 +5,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 import User from './users';
@@ -17,9 +19,13 @@ class Appointment {
   // quantos usuarios o appointmente tem?1
   // quantos servicos  o usuario pode prestar?muitos
 
+  // KISS - Keep It Simple & Stupid
+
   @Column()
   provider_id: string;
 
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'provider_id' }) // a coluna que vai identificar o prestador do servico
   provider: User;
 
   @Column('timestamp with time zone')

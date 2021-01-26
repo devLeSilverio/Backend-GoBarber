@@ -4,11 +4,13 @@ import Appointment from '../models/Appointment';
 import AppointmentsRepository from '../Repository/ApointmentRepository';
 
 interface Request {
+  // eslint-disable-next-line camelcase
   provider: string;
   date: Date;
 }
 
 class CreateAppointmentService {
+  // eslint-disable-next-line camelcase
   public async execute({ provider, date }: Request): Promise<Appointment> {
     const appointmentsRepository = getCustomRepository(AppointmentsRepository);
     const appointmentDate = startOfHour(date);
