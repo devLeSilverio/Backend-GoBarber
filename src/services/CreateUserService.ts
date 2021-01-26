@@ -1,5 +1,5 @@
 import { getRepository } from 'typeorm'; // usar o mesmo repositorio
-import User from '../models/users'; // pegou os dados
+import User from '../models/Users'; // pegou os dados
 
 interface Request {
   name: string;
