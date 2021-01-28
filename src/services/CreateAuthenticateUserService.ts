@@ -7,6 +7,7 @@ interface Request {
   password: string;
 }
 
+// para nao declarar direto
 interface Response {
   user: User;
 }
