@@ -1,7 +1,7 @@
 import { startOfHour } from 'date-fns';
 import { getCustomRepository } from 'typeorm';
 import Appointment from '../models/Appointment';
-import AppointmentsRepository from '../Repository/ApointmentRepository';
+import AppointmentsRepository from '../Repositories/ApointmentRepository';
 
 interface Request {
   // eslint-disable-next-line camelcase

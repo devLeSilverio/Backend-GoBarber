@@ -1,5 +1,6 @@
 import { getRepository } from 'typeorm'; // usar o mesmo repositorio
-import User from '../models/Users'; // pegou os dados
+import { hash } from 'bcryptjs';
+import User from '../models/User'; // pegou os dados
 
 interface Request {
   name: string;
@@ -10,21 +11,22 @@ interface Request {
 class CreateUserService {
   public async execute({ name, email, password }: Request): Promise<User> {
     const usersRepository = getRepository(User);
-
     // email duplicado
     const checkUserExist = await usersRepository.findOne({
       where: { email },
     });
 
-    if (checkUserExist) {
+    if (!checkUserExist) {
       throw new Error('Email address already used');
     }
+
+    const hashedPassword = await hash(password, 8);
 
     // criando a instancia
     const user = usersRepository.create({
       name,
       email,
-      password,
+      password: hashedPassword,
     });
 
     await usersRepository.save(user);
