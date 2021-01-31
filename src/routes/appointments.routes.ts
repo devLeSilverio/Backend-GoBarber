@@ -4,8 +4,11 @@ import { parseISO } from 'date-fns';
 
 import AppointmentsRepository from '../Repositories/ApointmentRepository';
 import CreateAppointmentService from '../services/CreateAppointmentsService';
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const appointmentsRouter = Router();
+
+appointmentsRouter.use(ensureAuthenticated);
 
 appointmentsRouter.get('/', async (request, response) => {
   const appointmentsRepository = getCustomRepository(AppointmentsRepository);

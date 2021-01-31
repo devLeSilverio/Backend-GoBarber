@@ -2,6 +2,7 @@ import { getRepository } from 'typeorm'; // usar o mesmo repositorio
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import User from '../models/User'; // pegou os dados
+import authConfig from '../config/auth';
 
 interface Request {
   email: string;
@@ -30,10 +31,11 @@ class AuthenticateUserService {
       throw new Error('Incorret email/password combination');
     }
 
+    const { secret, expiresIn } = authConfig.jwt;
     // criptografado mas não é seguro
-    const token = sign({}, 'd3aa349c8d932ea71f11aa096ba29f61', {
+    const token = sign({}, secret, {
       subject: user.id,
-      expiresIn: '1d',
+      expiresIn,
     });
 
     return {
