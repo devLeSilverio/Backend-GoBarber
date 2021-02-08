@@ -28,6 +28,10 @@ export default function ensureAuthenticated(
 
     const { sub } = decoded as TokenPayload;
 
+    request.user = {
+      id: sub,
+    };
+
     return next();
   } catch {
     throw Error('Invalid jwt token');
